@@ -2,64 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Weapon
-{
-    public int damage;
-    public float reload;
-    public bool isMelee;
-    public bool canAttack = true;
-    private PlayerAttack holderPlayer;
-
-    public void StartCoolDown() {
-        canAttack = false;
-    }
-
-    public void ResetCoolDown() {
-        canAttack = true;
-    }
-}
-
-public class MeleeWeapon : Weapon
-{
-    public float reach;
-
-    public MeleeWeapon(int dmg, float rel, float r)
-    {
-        isMelee = true;
-        damage = dmg;
-        reload = rel;
-        reach = r;
-    }
-
-    public void Attack (GameObject enemy) {
-        enemy.SendMessage("DecreaseHp", damage);
-    }
-}
-
-public class RangeWeapon : Weapon
-{
-    public GameObject particlePrefab;
-    public float particleVelocity;
-
-    public RangeWeapon(int dmg, float rel, float vel, GameObject part)
-    {
-        damage = dmg;
-        reload = rel;
-        isMelee = false;
-        particleVelocity = vel;
-        particlePrefab = part;
-    }
-
-    public void Attack (Vector2 start, Vector2 direction) {
-        GameObject particle = GameObject.Instantiate(particlePrefab, start, Quaternion.identity);
-        ParticleController particleController = particle.GetComponent<ParticleController>();
-        particleController.damage = damage;
-        particleController.sourceTag = "Player";
-        particleController.targetTag = "Enemy";
-        particle.GetComponent<Rigidbody2D>().velocity = direction * particleVelocity;
-    }
-}
-
 [RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -67,7 +9,6 @@ public class PlayerAttack : MonoBehaviour
 {
     private PlayerInput playerInput;
     private PlayerMovement playerMovement;
-    
     private BoxCollider2D coll;
     private Weapon weapon;
 
@@ -99,17 +40,14 @@ public class PlayerAttack : MonoBehaviour
 
         if (playerInput.attackInput && weapon.isMelee) {
             AttackMelee();
-            AfterAttack();            
         } else if (playerInput.rangeAttackInput && !weapon.isMelee) {
             AttackRange();
-            AfterAttack();
+        } else {
+            return;
         }
-    }
 
-    void AfterAttack()
-    {
-        weapon.StartCoolDown();
-        Invoke("ResetWeaponCoolDown", weapon.reload);
+        playerMovement.Stun(weapon.animationDuration);
+        StartCoroutine(ReloadWeapon());
     }
 
     void AttackMelee() {
@@ -117,14 +55,8 @@ public class PlayerAttack : MonoBehaviour
 
         Vector2 rayStart = gameObject.transform.position;
         Vector2 rayDirection = playerMovement.facedDirection;
-        RaycastHit2D hitInfo;
-        int layerMask = LayerMask.GetMask("Enemies");
 
-        hitInfo = Physics2D.Raycast(rayStart, rayDirection, sword.reach, layerMask);
-
-        if (hitInfo.collider != null) {
-            sword.Attack(hitInfo.collider.gameObject);
-        }
+        sword.Attack(rayStart, rayDirection);
     }
 
     void AttackRange() {
@@ -137,7 +69,78 @@ public class PlayerAttack : MonoBehaviour
         gun.Attack(particleStart, particleDirection);
     }
 
-    void ResetWeaponCoolDown() {
+    IEnumerator ReloadWeapon() {
+        weapon.StartCoolDown();
+        yield return new WaitForSeconds(weapon.reload);
         weapon.ResetCoolDown();
+    }
+}
+
+
+public abstract class Weapon
+{
+    public int damage;
+    public float reload;
+    public float animationDuration;
+    public bool isMelee;
+    public bool canAttack = true;
+    private PlayerAttack holderPlayer;
+
+    public void StartCoolDown() {
+        canAttack = false;
+    }
+
+    public void ResetCoolDown() {
+        canAttack = true;
+    }
+}
+
+public class MeleeWeapon : Weapon
+{
+    public float reach;
+
+    public MeleeWeapon(int dmg, float rel, float animation, float r)
+    {
+        damage = dmg;
+        animationDuration = animation;
+        reload = rel;
+        isMelee = true;
+        reach = r;
+    }
+
+    public void Attack (Vector2 rayStart, Vector2 rayDirection) {
+        RaycastHit2D hitInfo;
+        int layerMask = LayerMask.GetMask("Enemies");
+
+        hitInfo = Physics2D.Raycast(rayStart, rayDirection, reach, layerMask);
+
+        if (hitInfo.collider != null) {
+            hitInfo.collider.gameObject.SendMessage("DecreaseHp", damage);
+        }
+    }
+}
+
+public class RangeWeapon : Weapon
+{
+    public GameObject particlePrefab;
+    public float particleVelocity;
+
+    public RangeWeapon(int dmg, float rel, float animation, float vel, GameObject part)
+    {
+        damage = dmg;
+        reload = rel;
+        animationDuration = animation;
+        isMelee = false;
+        particleVelocity = vel;
+        particlePrefab = part;
+    }
+
+    public void Attack (Vector2 start, Vector2 direction) {
+        GameObject particle = GameObject.Instantiate(particlePrefab, start, Quaternion.identity);
+        ParticleController particleController = particle.GetComponent<ParticleController>();
+        particleController.damage = damage;
+        particleController.sourceTag = "Player";
+        particleController.targetTag = "Enemy";
+        particle.GetComponent<Rigidbody2D>().velocity = direction * particleVelocity;
     }
 }

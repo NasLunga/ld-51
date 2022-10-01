@@ -8,12 +8,18 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public Vector2 facedDirection {get; private set;}
+    public bool canMove = true;
     private PlayerInput playerInput;
     public float movementSpeed = 3;
     private Rigidbody2D rb2d;
     private Animator animator;
+    private float stunDuration = 0;
 
-    // Start is called before the first frame update
+    void Awake()
+    {
+        StartCoroutine(ManageStunLock());
+    }
+    
     void Start()
     {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
@@ -24,8 +30,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AdjustFace();
-        Move();
+        if (canMove) {
+            AdjustFace();
+            Move();
+        } else {
+            Freeze();
+        }
     }
 
     void AdjustFace()
@@ -83,6 +93,29 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("Move", true);
         } else {
             animator.SetBool("Move", false);
+        }
+    }
+
+    void Freeze() {
+        rb2d.velocity = new Vector2(0f, 0f);
+    }
+
+    public void Stun(float duration)
+    {
+        stunDuration += duration;
+    }
+
+    IEnumerator ManageStunLock()
+    {
+        // Sets canMove to false when stunDuration is gt zero
+        while (true) {
+            if (stunDuration > 0) {
+                canMove = false;
+            }
+            float seconds = stunDuration;
+            stunDuration = 0;
+            yield return new WaitForSeconds(seconds);
+            canMove = true;
         }
     }
 }
