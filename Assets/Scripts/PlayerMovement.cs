@@ -26,8 +26,14 @@ public class PlayerMovement : MonoBehaviour
     void Move()
     {
         Vector2 movement = playerInput.movementInput;
-        movement.Normalize();
+        // movement.Normalize();
         movement *= movementSpeed;
+
+        // Only move on one axis at a time
+        if (movement.y != 0) {
+            movement.x = 0;
+        } 
+
         rb2d.velocity = movement;
     }
 }
