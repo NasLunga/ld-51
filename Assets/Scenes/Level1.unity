@@ -159,7 +159,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1043,6 +1043,7 @@ GameObject:
   - component: {fileID: 1226272259}
   - component: {fileID: 1226272260}
   - component: {fileID: 1226272261}
+  - component: {fileID: 1226272262}
   m_Layer: 0
   m_Name: bg
   m_TagString: Untagged
@@ -1137,6 +1138,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1226272262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226272258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc3be1764c451ae46af4a25c21b5672a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2017743744
 GameObject:
   m_ObjectHideFlags: 0
@@ -1186,6 +1199,7 @@ MonoBehaviour:
   particlePrefab: {fileID: 6112444519361766319, guid: bcaadc48fecf4684395494fa2d65bfbf, type: 3}
   enemy: {fileID: 1114800783}
   state: 1
+  weaponState: 1
 --- !u!1001 &2109683289
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1345,7 +1359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 945573258649786042, guid: f2abf13c5aa160a4aa62f2834da5706a, type: 3}
       propertyPath: m_Color.a
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2abf13c5aa160a4aa62f2834da5706a, type: 3}

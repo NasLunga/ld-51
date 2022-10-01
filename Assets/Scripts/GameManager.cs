@@ -10,8 +10,11 @@ public class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     public GameObject particlePrefab;
     public GameObject enemy;
-    public GameState state = GameState.RangedWeapon;
+    public GameState state;
+    public WeaponState weaponState = WeaponState.RangedWeapon;
     public List<Weapon> weapons;
+
+    public static event System.Action<GameState> OnGameStateChanged;
 
     void Awake()
     {
@@ -31,28 +34,33 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        state = GameState.EnemySpawning;
         StartCoroutine(ChangeWeapons());
 
         float enemySpawnDuration = enemy.GetComponent<EnemyController>().spawnDuration;
+        enemy.SendMessage("InitiateSpawn");
         player.SendMessage("Stun", enemySpawnDuration);
     }
 
-    public void SetState(GameState newState)
-    {
+    public void SetState(GameState newState) {
         state = newState;
+        OnGameStateChanged?.Invoke(newState);
     }
 
-    
+    public void SetWeaponState(WeaponState newState)
+    {
+        weaponState = newState;
+    }
 
     IEnumerator ChangeWeapons()
     {
         while (true) {
-            if (state == GameState.MeleeWeapon) {
+            if (weaponState == WeaponState.MeleeWeapon) {
                 player.SendMessage("SetWeapon", weapons[1]);
-                SetState(GameState.RangedWeapon);
+                SetWeaponState(WeaponState.RangedWeapon);
             } else {
                 player.SendMessage("SetWeapon", weapons[0]);
-                SetState(GameState.MeleeWeapon);
+                SetWeaponState(WeaponState.MeleeWeapon);
             }
 
             yield return new WaitForSeconds(10);
@@ -61,7 +69,13 @@ public class GameManager : MonoBehaviour
 }
 
 
-public enum GameState {
+public enum WeaponState {
     MeleeWeapon,
     RangedWeapon
+}
+
+public enum GameState {
+    EnemySpawning,
+    Battle,
+    BattleEnded
 }

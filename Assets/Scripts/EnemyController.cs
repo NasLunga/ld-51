@@ -7,25 +7,22 @@ public class EnemyController : MonoBehaviour
     public int hp {get; private set;} = 50;
     public float spawnDuration = 3f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    void Awake() {
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 0);
+    }
+
+    void InitiateSpawn() {
         float alphaIncrease = 1 /  (spawnDuration * 100f);
         StartCoroutine(Spawn(alphaIncrease));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     IEnumerator Spawn(float alphaIncrease)
     {
-        for (float alpha = 0; alpha <= 255; alpha += alphaIncrease) {
+        for (float alpha = 0; alpha <= 1f; alpha += alphaIncrease) {
             gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, System.Math.Min(alpha, 255));
             yield return new WaitForSeconds(0.01f);
         }
+        GameManager.instance.SetState(GameState.Battle);
     }
 
     void DecreaseHp(int loss)
