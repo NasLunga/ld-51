@@ -61,11 +61,13 @@ public class RangeWeapon : Weapon
 }
 
 [RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerAttack : MonoBehaviour
 {
     private PlayerInput playerInput;
-    private Vector2 facedDirection;
+    private PlayerMovement playerMovement;
+    
     private BoxCollider2D coll;
     private Weapon weapon;
 
@@ -73,13 +75,13 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         playerInput = gameObject.GetComponent<PlayerInput>();
+        playerMovement = gameObject.GetComponent<PlayerMovement>();
         coll = gameObject.GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        AdjustFace();
         InitiateAttack();
     }
 
@@ -87,26 +89,6 @@ public class PlayerAttack : MonoBehaviour
         weapon = w;
     }
 
-    void AdjustFace()
-    {
-        Vector2 movement = playerInput.movementInput;
-        int y = 0;
-        int x = 0;
-        if (movement.y > 0) {
-            y = 1;
-        } else if (movement.y < 0) {
-            y = -1;
-        } else if (movement.x > 0) {
-            x = 1;
-        } else if (movement.x < 0) {
-            x = 0;
-        }
-        
-        // Only change face when moving
-        if (x != 0 || y != 0) {
-            facedDirection = new Vector2(x, y);
-        }
-    }
 
     void InitiateAttack()
     {
@@ -134,7 +116,7 @@ public class PlayerAttack : MonoBehaviour
         MeleeWeapon sword = (MeleeWeapon) weapon;
 
         Vector2 rayStart = gameObject.transform.position;
-        Vector2 rayDirection = facedDirection;
+        Vector2 rayDirection = playerMovement.facedDirection;
         RaycastHit2D hitInfo;
         int layerMask = LayerMask.GetMask("Enemies");
 
@@ -148,7 +130,7 @@ public class PlayerAttack : MonoBehaviour
     void AttackRange() {
         RangeWeapon gun = (RangeWeapon) weapon;
 
-        Vector2 particleStart = (Vector2) gameObject.transform.position + facedDirection;
+        Vector2 particleStart = (Vector2) gameObject.transform.position + playerMovement.facedDirection;
         Vector2 particleDirection = playerInput.rangeAttackInputDirection - particleStart;
         particleDirection.Normalize();
 
