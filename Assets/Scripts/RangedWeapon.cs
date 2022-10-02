@@ -16,7 +16,6 @@ public class RangedWeapon : Weapon
 
     void LaunchParticle()
     {
-        //     RangeWeapon gun = (RangeWeapon) weapon;
         GameObject player = GameManager.instance.player;
         Vector2 particleStart = (Vector2) player.transform.position + player.GetComponent<PlayerMovement>().facedDirection;
         Vector2 particleDirection = player.GetComponent<PlayerInput>().rangeAttackInputDirection - particleStart;

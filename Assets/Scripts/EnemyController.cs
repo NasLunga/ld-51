@@ -8,8 +8,9 @@ public class EnemyController : MonoBehaviour
 {
     public int maxHp = 1000;
     public int hp {get; private set;}
-    public float spawnDuration = 3f;
-    public EnemyState state;
+    public float spawnVelocity = 3f;
+    public GameObject spawnPoint;
+    public EnemyState state {get; private set;}
     private EnemyMovement enemyMovement;
     private EnemyAttack enemyAttack;
 
@@ -17,12 +18,10 @@ public class EnemyController : MonoBehaviour
         hp = maxHp;
         enemyMovement = gameObject.GetComponent<EnemyMovement>();
         enemyAttack = gameObject.GetComponent<EnemyAttack>();
-        gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 0);
     }
 
     void InitiateSpawn() {
-        float alphaIncrease = 1 /  (spawnDuration * 100f);
-        StartCoroutine(Spawn(alphaIncrease));
+        StartCoroutine(Spawn());
         state = EnemyState.Spawning;
     }
 
@@ -30,13 +29,20 @@ public class EnemyController : MonoBehaviour
         DecideAction();
     }
 
-    IEnumerator Spawn(float alphaIncrease)
+    IEnumerator Spawn()
     {
-        for (float alpha = 0; alpha <= 1f; alpha += alphaIncrease) {
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, System.Math.Min(alpha, 255));
-            yield return new WaitForSeconds(0.01f);
+        gameObject.GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+        enemyMovement.StartMovement(new Vector2(0f, spawnVelocity));
+        
+        float height = gameObject.GetComponent<SpriteRenderer>().bounds.size.y * 0.25f;
+
+        while (gameObject.transform.position.y < spawnPoint.transform.position.y + height) {
+            enemyMovement.FaceToDirection(new Vector2(0f, -1f));
+            yield return null;
         }
-        GameManager.instance.SetState(GameState.Battle);
+        enemyMovement.StopMovement();
+        gameObject.GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.None;
+        GameObject.Destroy(spawnPoint);
         SetState(EnemyState.Standby);
     }
 

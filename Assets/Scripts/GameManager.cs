@@ -31,9 +31,7 @@ public class GameManager : MonoBehaviour
         state = GameState.EnemySpawning;
         StartCoroutine(ChangeWeapons());
 
-        float enemySpawnDuration = enemy.GetComponent<EnemyController>().spawnDuration;
         enemy.SendMessage("InitiateSpawn");
-        player.SendMessage("Stun", enemySpawnDuration);
     }
 
     public void SetState(GameState newState) {
