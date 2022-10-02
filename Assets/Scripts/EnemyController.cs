@@ -70,7 +70,7 @@ public class EnemyController : MonoBehaviour
         float distanceToPlayer = (player.transform.position - pos).magnitude;
         float distanceToCenter = pos.magnitude;
         
-        if (distanceToPlayer < enemyAttack.reach) {
+        if (distanceToPlayer < enemyAttack.reach * 0.9) {
             bool shouldAttack = false;
             // If player is immobile in front of enemy, attack
             if (!player.GetComponent<PlayerMovement>().canMove) {
@@ -104,7 +104,7 @@ public class EnemyController : MonoBehaviour
     void DecideMovement() {
         if (hp > hp / maxHp) {
             SetState(EnemyState.MovingToPlayer);
-            StartCoroutine(enemyMovement.FollowObject(GameManager.instance.player));
+            enemyMovement.FollowObject(GameManager.instance.player);
             return;
         }
     }

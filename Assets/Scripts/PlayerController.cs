@@ -17,7 +17,17 @@ public class PlayerController : MonoBehaviour
         hp = maxHp;
     }
 
-    public void DecreaseHp(int loss) {
-        maxHp -= loss;
+    public void DecreaseHp(int loss)
+    {
+        hp -= loss;
+        Debug.Log("took hit");
+        if (hp < 0) {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Debug.Log("Death");
     }
 }

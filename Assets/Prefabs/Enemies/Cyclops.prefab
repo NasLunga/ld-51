@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2674378573009899324}
   - component: {fileID: 544478223595162485}
   - component: {fileID: 609716672850833448}
+  - component: {fileID: 3564707362392480234}
   m_Layer: 6
   m_Name: Cyclops
   m_TagString: Enemy
@@ -127,6 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48d38e5f12d80b4abb2222f6484bcc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHp: 1000
   spawnDuration: 3
   state: 0
 --- !u!95 &2674378573009899324
@@ -161,7 +163,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000000
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -183,3 +185,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 2
+--- !u!114 &3564707362392480234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945573258649786023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035410e78b4d75140b63213d9dc1c4f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reach: 2
+  damage: 30
+  attackAnimationDuration: 0.2
+  attackDelay: 0.1
