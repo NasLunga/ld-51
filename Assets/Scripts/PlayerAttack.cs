@@ -2,9 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerInput))]
-[RequireComponent(typeof(PlayerMovement))]
-[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerAttack : MonoBehaviour
 {
     private PlayerInput playerInput;

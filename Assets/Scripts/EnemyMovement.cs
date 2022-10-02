@@ -45,6 +45,10 @@ public class EnemyMovement : MonoBehaviour
         }
         
         Vector2 direction = currentVelocity;
+        FaceToDirection(direction);
+    }
+
+    public void FaceToDirection(Vector2 direction) {
         int face;
         int rotation = 0;
 
