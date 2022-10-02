@@ -75,7 +75,6 @@ public class PlayerMovement : MonoBehaviour
     void Move()
     {
         Vector2 movement = playerInput.movementInput;
-        // movement.Normalize();
         movement *= movementSpeed;
 
         // Only move on one axis at a time
@@ -87,9 +86,9 @@ public class PlayerMovement : MonoBehaviour
 
         // Adjust animator
         if (movement.magnitude > 0) {
-            animator.SetBool("Move", true);
+            animator.speed = 1;
         } else {
-            animator.SetBool("Move", false);
+            animator.speed = 0;
         }
     }
 

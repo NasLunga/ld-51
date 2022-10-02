@@ -6,6 +6,7 @@ public class EnemyAttack : MonoBehaviour
 {
     public float reach = 2f;
     public int damage = 30;
+    public float stunDuration = 0.5f;
     public float attackAnimationWait = 0.2f;
     public float attackDelay = 0.1f;
     private EnemyController enemyController;

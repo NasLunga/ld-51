@@ -1200,6 +1200,8 @@ MonoBehaviour:
   enemy: {fileID: 1114800783}
   state: 1
   weaponState: 1
+  meleeWeapon: {fileID: 5463704358281975418, guid: 153c848348682b34aab139ad763e7d2b, type: 3}
+  rangedWeapon: {fileID: 6033821612980334275, guid: 37c5ed784b9761d409950a3bed552063, type: 3}
 --- !u!1001 &2109683289
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1210,6 +1212,18 @@ PrefabInstance:
     - target: {fileID: 3748244088571984065, guid: 41836fd4f79553549b6ec04b81a51ce6, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748244088571984078, guid: 41836fd4f79553549b6ec04b81a51ce6, type: 3}
+      propertyPath: m_Size.y
+      value: 2.5137615
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748244088571984078, guid: 41836fd4f79553549b6ec04b81a51ce6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2027712306, guid: e137221e72063c040ab77903dbadead6, type: 3}
+    - target: {fileID: 3748244088571984078, guid: 41836fd4f79553549b6ec04b81a51ce6, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3748244088571984079, guid: 41836fd4f79553549b6ec04b81a51ce6, type: 3}
       propertyPath: m_RootOrder
@@ -1388,18 +1402,6 @@ PrefabInstance:
     - target: {fileID: 945573258649786042, guid: f2abf13c5aa160a4aa62f2834da5706a, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3564707362392480234, guid: f2abf13c5aa160a4aa62f2834da5706a, type: 3}
-      propertyPath: reach
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3564707362392480234, guid: f2abf13c5aa160a4aa62f2834da5706a, type: 3}
-      propertyPath: attackDelay
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3564707362392480234, guid: f2abf13c5aa160a4aa62f2834da5706a, type: 3}
-      propertyPath: attackAnimationWait
-      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3564707362392480234, guid: f2abf13c5aa160a4aa62f2834da5706a, type: 3}
       propertyPath: attackAnimationDuration

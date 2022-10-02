@@ -12,7 +12,8 @@ public class GameManager : MonoBehaviour
     public GameObject enemy;
     public GameState state;
     public WeaponState weaponState = WeaponState.RangedWeapon;
-    public List<Weapon> weapons;
+    public MeleeWeapon meleeWeapon;
+    public RangedWeapon rangedWeapon;
 
     public static event System.Action<GameState> OnGameStateChanged;
 
@@ -23,13 +24,6 @@ public class GameManager : MonoBehaviour
         } else {
             instance = this;
         }
-
-        weapons = new List<Weapon>();
-        Weapon sword = new MeleeWeapon(10, 0.5f, 0.3f, 2);
-        weapons.Add(sword);
-
-        Weapon gun = new RangeWeapon(5, 0.5f, 0.3f, 4f, particlePrefab);
-        weapons.Add(gun);
     }
 
     void Start()
@@ -56,10 +50,10 @@ public class GameManager : MonoBehaviour
     {
         while (true) {
             if (weaponState == WeaponState.MeleeWeapon) {
-                player.SendMessage("SetWeapon", weapons[1]);
+                player.SendMessage("SetWeapon", rangedWeapon);
                 SetWeaponState(WeaponState.RangedWeapon);
             } else {
-                player.SendMessage("SetWeapon", weapons[0]);
+                player.SendMessage("SetWeapon", meleeWeapon);
                 SetWeaponState(WeaponState.MeleeWeapon);
             }
 

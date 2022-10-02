@@ -197,7 +197,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 035410e78b4d75140b63213d9dc1c4f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reach: 2
+  reach: 3
   damage: 30
-  attackAnimationDuration: 0.2
-  attackDelay: 0.1
+  stunDuration: 0.5
+  attackAnimationWait: 0.2
+  attackDelay: 5
