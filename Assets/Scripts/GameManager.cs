@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class GameManager : MonoBehaviour
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject playerPrefab;
     public GameObject particlePrefab;
+    public float gameOverDelay = 1.5f;
     public GameObject enemy;
     public GameState state;
     public WeaponState weaponState = WeaponState.RangedWeapon;
@@ -57,6 +59,11 @@ public class GameManager : MonoBehaviour
 
             yield return new WaitForSeconds(10);
         }
+    }
+
+    public IEnumerator GameOver() {
+        yield return new WaitForSeconds(gameOverDelay);
+        SceneManager.LoadScene("GameOver");
     }
 }
 

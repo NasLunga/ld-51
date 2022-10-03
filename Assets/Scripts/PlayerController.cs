@@ -17,18 +17,24 @@ public class PlayerController : MonoBehaviour
     public AudioClip takeDamageSound;
     public AudioClip deathSound;
     public AudioSource audioSource;
+    public HPBarController hpBar;
     private SpriteRenderer spriteRenderer;
+    private PlayerMovement playerMovement;
+
 
     void Awake()
     {
         hp = maxHp;
         audioSource = gameObject.GetComponent<AudioSource>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        playerMovement = gameObject.GetComponent<PlayerMovement>();
+        hpBar.setPercents(1f);
     }
 
     public void DecreaseHp(int loss)
     {
         hp -= loss;
+        hpBar.setPercents((float) hp / (float) maxHp);
         if (hp < 0) {
             Die();
         }
@@ -54,7 +60,8 @@ public class PlayerController : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("Death");
+        playerMovement.Stun(10f);
+        StartCoroutine(GameManager.instance.GameOver());
         audioSource.clip = deathSound;
         audioSource.Play();
     }
