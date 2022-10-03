@@ -11,11 +11,15 @@ public class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     public GameObject particlePrefab;
     public float gameOverDelay = 1.5f;
+    public float nextLevelLoadDelay = 2f;
     public GameObject enemy;
     public GameState state;
     public WeaponState weaponState = WeaponState.RangedWeapon;
     public MeleeWeapon meleeWeapon;
     public RangedWeapon rangedWeapon;
+    public DoorsController doors;
+    public string nextSceneName;
+    public bool doorsOpen {get; private set;} = false;
 
     public static event System.Action<GameState> OnGameStateChanged;
 
@@ -61,9 +65,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void OpenDoors() {
+        doors.Open();
+    }
+
     public IEnumerator GameOver() {
         yield return new WaitForSeconds(gameOverDelay);
         SceneManager.LoadScene("GameOver");
+    }
+
+    public IEnumerator LoadNextLevel() {
+        yield return new WaitForSeconds(nextLevelLoadDelay);
+        SceneManager.LoadScene(nextSceneName);
     }
 }
 

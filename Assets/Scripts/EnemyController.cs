@@ -70,12 +70,13 @@ public class EnemyController : MonoBehaviour
     {
         hp -= loss;
         hpBar.setPercents((float) hp / (float) maxHp);
-        if (hp < 0) {
-            Die();
-        }
 
         SoundManagerGameplay.instance.PlaySingle(takeDamangeSound);
         StartCoroutine(RedBlinkAnimation());
+
+        if (hp < 0) {
+            Die();
+        }
     }
 
     public IEnumerator RedBlinkAnimation() {
@@ -153,9 +154,9 @@ public class EnemyController : MonoBehaviour
 
     void Die()
     {
+        SoundManagerGameplay.instance.PlaySingle(deathSound);
+        GameManager.instance.OpenDoors();
         gameObject.SetActive(false);
-        audioSource.clip = deathSound;
-        audioSource.Play();
     }
 }
 

@@ -35,11 +35,13 @@ public class PlayerController : MonoBehaviour
     {
         hp -= loss;
         hpBar.setPercents((float) hp / (float) maxHp);
-        if (hp < 0) {
-            Die();
-        }
+
         SoundManagerGameplay.instance.PlaySingle(takeDamageSound);
         StartCoroutine(RedBlinkAnimation());
+
+        if (hp < 0) {
+            Die();
+        }        
     }
 
     public IEnumerator RedBlinkAnimation() {
@@ -60,7 +62,6 @@ public class PlayerController : MonoBehaviour
 
     void Die()
     {
-        playerMovement.Stun(10f);
         StartCoroutine(GameManager.instance.GameOver());
         audioSource.clip = deathSound;
         audioSource.Play();

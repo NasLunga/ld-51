@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 945573258649786040}
   - component: {fileID: 945573258649786042}
   - component: {fileID: 945573258649786041}
-  - component: {fileID: 945573258649786043}
   - component: {fileID: 2674378573009899324}
   - component: {fileID: 544478223595162485}
+  - component: {fileID: 1267293828573702547}
+  - component: {fileID: 945573258649786043}
   - component: {fileID: 609716672850833448}
   - component: {fileID: 3564707362392480234}
-  - component: {fileID: 1267293828573702547}
   m_Layer: 6
   m_Name: Cyclops
   m_TagString: Enemy
@@ -118,27 +118,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 3}
   m_EdgeRadius: 0
---- !u!114 &945573258649786043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 945573258649786023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d48d38e5f12d80b4abb2222f6484bcc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageBlinkDuration: 0.1
-  damageAnimationDuration: 0.5
-  maxHp: 1000
-  spawnVelocity: 1.5
-  spawnPoint: {fileID: 0}
-  spawnSound: {fileID: 8300000, guid: e9f5b8cceea4dd149996bf2b3d9fc83a, type: 3}
-  takeDamangeSound: {fileID: 8300000, guid: 26ab03b18fdf44b45adeef5a0cc558b2, type: 3}
-  deathSound: {fileID: 0}
-  hpBar: {fileID: 2889822286539558181}
 --- !u!95 &2674378573009899324
 Animator:
   serializedVersion: 4
@@ -180,37 +159,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &609716672850833448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 945573258649786023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04569d6251708174e88250a29ce106b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 2
---- !u!114 &3564707362392480234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 945573258649786023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 035410e78b4d75140b63213d9dc1c4f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  reach: 3
-  damage: 30
-  stunDuration: 0.5
-  attackAnimationWait: 0.3
-  attackDelay: 2
-  attackSound: {fileID: 8300000, guid: 0e6ffe07de9dcbb428d2d65d29ed8575, type: 3}
 --- !u!82 &1267293828573702547
 AudioSource:
   m_ObjectHideFlags: 0
@@ -307,6 +255,58 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &945573258649786043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945573258649786023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d48d38e5f12d80b4abb2222f6484bcc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageBlinkDuration: 0.1
+  damageAnimationDuration: 0.5
+  maxHp: 1000
+  spawnVelocity: 1.5
+  spawnPoint: {fileID: 0}
+  spawnSound: {fileID: 8300000, guid: e9f5b8cceea4dd149996bf2b3d9fc83a, type: 3}
+  takeDamangeSound: {fileID: 8300000, guid: 26ab03b18fdf44b45adeef5a0cc558b2, type: 3}
+  deathSound: {fileID: 8300000, guid: 2c969f01e5efe7a45aa2225b7c74c0ad, type: 3}
+  hpBar: {fileID: 2889822286539558181}
+--- !u!114 &609716672850833448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945573258649786023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04569d6251708174e88250a29ce106b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 2
+--- !u!114 &3564707362392480234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945573258649786023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035410e78b4d75140b63213d9dc1c4f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reach: 3
+  damage: 30
+  stunDuration: 0.5
+  attackAnimationWait: 0.3
+  attackDelay: 2
+  attackSound: {fileID: 8300000, guid: 0e6ffe07de9dcbb428d2d65d29ed8575, type: 3}
 --- !u!1001 &945573258464543785
 PrefabInstance:
   m_ObjectHideFlags: 0
