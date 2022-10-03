@@ -16,7 +16,7 @@ public class DoorsController : MonoBehaviour
     
 
 
-    void Start()
+    void Awake()
     {
         animator = gameObject.GetComponent<Animator>();
         audioSource = gameObject.GetComponent<AudioSource>();

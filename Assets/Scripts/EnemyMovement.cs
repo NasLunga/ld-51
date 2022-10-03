@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+[RequireComponent(typeof(Animator))]
 public class EnemyMovement : MonoBehaviour
 {
     public float movementSpeed = 2f;
@@ -12,9 +12,7 @@ public class EnemyMovement : MonoBehaviour
     private Coroutine followObjectTask;
     private Coroutine moveToPointTask;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    void Awake() {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
         currentVelocity = new Vector2(0f, 0f);

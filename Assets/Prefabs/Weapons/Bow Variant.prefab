@@ -16,13 +16,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 22100000, guid: e657e201bbb73564e8dccc280ce57a53, type: 2}
     - target: {fileID: 6033821612980334275, guid: 37c5ed784b9761d409950a3bed552063, type: 3}
-      propertyPath: damage
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6033821612980334275, guid: 37c5ed784b9761d409950a3bed552063, type: 3}
-      propertyPath: animationDuration
-      value: 0.75
-      objectReference: {fileID: 0}
+      propertyPath: particlePrefab
+      value: 
+      objectReference: {fileID: 6069830928438661181, guid: 51fb1b9fabea26c4a8ab101b838a12dd, type: 3}
     - target: {fileID: 6637786068349493007, guid: 37c5ed784b9761d409950a3bed552063, type: 3}
       propertyPath: m_Name
       value: Bow Variant
@@ -69,6 +65,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6695142734710718613, guid: 37c5ed784b9761d409950a3bed552063, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7742069561643555641, guid: 37c5ed784b9761d409950a3bed552063, type: 3}
+      propertyPath: m_FlipY
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7742069561643555641, guid: 37c5ed784b9761d409950a3bed552063, type: 3}

@@ -10,7 +10,7 @@ public class PlayerAttack : MonoBehaviour
     private Weapon weapon;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         playerInput = gameObject.GetComponent<PlayerInput>();
         playerMovement = gameObject.GetComponent<PlayerMovement>();

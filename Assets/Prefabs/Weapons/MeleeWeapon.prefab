@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2099393575
   m_SortingLayer: 4
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 50
   reload: 1
-  animationDuration: 0.75
+  animationDuration: 0.2
   animator: {fileID: 5503409153804604460}
   audioSource: {fileID: 362800167253082937}
   reach: 2

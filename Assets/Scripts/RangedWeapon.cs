@@ -28,5 +28,11 @@ public class RangedWeapon : Weapon
         particleController.sourceTag = "Player";
         particleController.targetTag = "Enemy";
         particle.GetComponent<Rigidbody2D>().velocity = particleDirection * particleVelocity;
+        
+        Quaternion rotation = new Quaternion();
+        rotation.SetLookRotation(Vector3.forward, particleDirection);
+        Debug.Log(rotation.eulerAngles);
+
+        particle.transform.rotation = rotation;
     }
 }

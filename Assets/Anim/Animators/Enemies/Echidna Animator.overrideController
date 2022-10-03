@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Echidna Animator
+  m_Controller: {fileID: 9100000, guid: 3cbfae8837285ae439dc1a5712b7e549, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 95f9cbd9532ef574db4d9b31ff500997, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 88c1eb2b90e1e304eab5f099ec6703f0, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: c10d3eb0382689548a156f8a67243650, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7fe7f61dd5e5aaa4fbcf1b32f04bb11a, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 796bcdc419a0cbb459ec8cbfcc037eef, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5dccca5f32414bc4f92e73abf63099a3, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 84561204936322040b13ccb2d0757bf6, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c6c4b749ce45c02429f767ee3c6afb72, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 50f7ea74ddd8e6a4e930620983717202, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 23b337cc5be66f64887291e583b924de, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 04d7865c14a366f4385c586bc388275f, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ef187f1c3161f0c47a2d7c79e7be33aa, type: 2}

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class Frame
@@ -115,9 +116,56 @@ public class StorytellingIntro : MonoBehaviour
             "",
             new Color(1, 1, 1)
         ));
+
+        frames.Add(new Frame(
+            sprites[5],
+            "Knight",
+            "What?",
+            new Color(1, 1, 1)
+        ));
+
+        frames.Add(new Frame(
+            sprites[4],
+            "Knight",
+            "What did you do?",
+            new Color(1, 1, 1)
+        ));
+
+        frames.Add(new Frame(
+            sprites[4],
+            "Witch",
+            "If you use those strength of yours only for malice, you don't deserve to have it. I took away control of your weapon control abilities",
+            new Color(1, 1, 1)
+        ));
+
+        frames.Add(new Frame(
+            sprites[6],
+            "Knight",
+            "You damn witch! Take it back this instant!",
+            new Color(1, 1, 1)
+        ));
+
+        frames.Add(new Frame(
+            sprites[6],
+            "Witch",
+            "It's not that simple. The cure is located at the very bottom of royal treasury guarded by the high rulers you are so loyal to. If you want to regain control over your body, you'll have to kill them all and steal it.",
+            new Color(1, 1, 1)
+        ));
+
+        frames.Add(new Frame(
+            sprites[6],
+            "",
+            "",
+            new Color(1, 1, 1)
+        ));
     }
 
     void DisplayNextFrame() {
+        if (currentFrame == frames.Count) {
+            SceneManager.LoadScene("Level1");
+            return;
+        }
+
         Frame frame = frames[currentFrame];
 
         backgroundHolder.sprite = frame.background;
@@ -140,6 +188,10 @@ public class StorytellingIntro : MonoBehaviour
 
     void Update() {
         if (Input.GetMouseButtonDown(0)) {
+            if (currentFrame == frames.Count) {
+                SceneManager.LoadScene("Level1");
+                return;
+            }
             if (drawTextTask != null) {
                 StopCoroutine(drawTextTask);
             }

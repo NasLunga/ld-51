@@ -4,24 +4,24 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
+[RequireComponent(typeof(AudioSource))]
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance {get; private set;}
     public GameObject player;
-    public GameObject playerPrefab;
-    public GameObject particlePrefab;
     public float gameOverDelay = 1.5f;
     public float nextLevelLoadDelay = 2f;
     public GameObject enemy;
-    public GameState state;
+    public GameState state {get; private set;}
     public WeaponState weaponState = WeaponState.RangedWeapon;
     public MeleeWeapon meleeWeapon;
     public RangedWeapon rangedWeapon;
     public DoorsController doors;
     public string nextSceneName;
     public bool doorsOpen {get; private set;} = false;
-
     public static event System.Action<GameState> OnGameStateChanged;
+    public AudioClip distortion1;
+    public AudioClip distortion2;
 
     void Awake()
     {
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        state = GameState.EnemySpawning;
+        SetState(GameState.EnemySpawning);
         StartCoroutine(ChangeWeapons());
 
         enemy.SendMessage("InitiateSpawn");
@@ -60,8 +60,38 @@ public class GameManager : MonoBehaviour
                 player.SendMessage("SetWeapon", meleeWeapon);
                 SetWeaponState(WeaponState.MeleeWeapon);
             }
+            StartCoroutine(DistortSound());
+            StartCoroutine(DistortCamera());
+            player.SendMessage("Stun", 0.5f);
 
             yield return new WaitForSeconds(10);
+        }
+    }
+
+    IEnumerator DistortSound() {
+        AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.clip = distortion1;
+        audioSource.Play();
+
+        while (audioSource.isPlaying){
+            yield return null;
+        }
+
+        audioSource.clip = distortion2;
+        audioSource.Play();
+    }
+
+    IEnumerator DistortCamera() {
+        Camera camera = GameObject.Find("Main Camera").GetComponent<Camera>();
+
+        for (float r = 0f; r <= 0.5f; r += 0.05f) {
+            camera.backgroundColor = new Color(r, 0, 0);
+            yield return null;
+        }
+
+        for (float r = 0.5f; r >= 0f; r -= 0.05f) {
+            camera.backgroundColor = new Color(r, 0, 0);
+            yield return null;
         }
     }
 
@@ -77,6 +107,11 @@ public class GameManager : MonoBehaviour
     public IEnumerator LoadNextLevel() {
         yield return new WaitForSeconds(nextLevelLoadDelay);
         SceneManager.LoadScene(nextSceneName);
+    }
+
+    void OnDestroy()
+    {
+        OnGameStateChanged = null;
     }
 }
 

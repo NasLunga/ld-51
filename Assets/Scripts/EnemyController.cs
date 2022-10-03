@@ -60,6 +60,7 @@ public class EnemyController : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.None;
         GameObject.Destroy(spawnPoint);
         SetState(EnemyState.Standby);
+        GameManager.instance.SetState(GameState.Battle);
     }
 
     public void SetState(EnemyState newState) {
@@ -154,6 +155,7 @@ public class EnemyController : MonoBehaviour
 
     void Die()
     {
+        GameManager.instance.SetState(GameState.BattleEnded);
         SoundManagerGameplay.instance.PlaySingle(deathSound);
         GameManager.instance.OpenDoors();
         gameObject.SetActive(false);

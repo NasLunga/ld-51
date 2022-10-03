@@ -15,10 +15,6 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         StartCoroutine(ManageStunLock());
-    }
-    
-    void Start()
-    {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         playerInput = gameObject.GetComponent<PlayerInput>();
         animator = gameObject.GetComponent<Animator>();

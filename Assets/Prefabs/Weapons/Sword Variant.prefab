@@ -67,14 +67,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5003455615075270290, guid: d58b49fe8ce1e3b489a735b2c30a07f8, type: 3}
-      propertyPath: animationDuration
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 5503409153804604460, guid: d58b49fe8ce1e3b489a735b2c30a07f8, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 3eebed6476422e245937e4aad75333ca, type: 2}
+      objectReference: {fileID: 22100000, guid: 68fe5fb4c923dd14fbb7af8c0187a37e, type: 2}
     - target: {fileID: 7808555192532005709, guid: d58b49fe8ce1e3b489a735b2c30a07f8, type: 3}
       propertyPath: m_Name
       value: Sword Variant
