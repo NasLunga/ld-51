@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public abstract class Weapon : MonoBehaviour
 {
     public int damage;
@@ -9,12 +10,14 @@ public abstract class Weapon : MonoBehaviour
     public float animationDuration;
     public bool canAttack {get; private set;} = true;
     public Animator animator;
+    public AudioSource audioSource;
 
     public abstract void Attack();
 
     void Awake()
     {
         animator = gameObject.GetComponent<Animator>();
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     protected void BeforeAttack()
@@ -26,6 +29,7 @@ public abstract class Weapon : MonoBehaviour
     {
         GameManager.instance.player.SendMessage("Stun", animationDuration);
         StartCoroutine(Reload());
+        audioSource.Play();
     }
 
     public IEnumerator Reload()
