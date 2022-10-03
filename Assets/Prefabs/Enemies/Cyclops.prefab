@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2674378573009899324}
   - component: {fileID: 544478223595162485}
   - component: {fileID: 609716672850833448}
+  - component: {fileID: 3564707362392480234}
   m_Layer: 6
   m_Name: Cyclops
   m_TagString: Enemy
@@ -76,14 +77,14 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2099393575
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b80ffd4558d478245b971b474428271a, type: 3}
+  m_Sprite: {fileID: 1244349104, guid: aaf3089d024e44f438352244b408db9f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2, y: 3}
+  m_Size: {x: 6, y: 6.005859}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -106,8 +107,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 3}
-    newSize: {x: 2, y: 3}
+    oldSize: {x: 5, y: 5.004883}
+    newSize: {x: 6, y: 6.005859}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -127,8 +128,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48d38e5f12d80b4abb2222f6484bcc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnDuration: 3
-  state: 0
+  maxHp: 1000
+  spawnVelocity: 3
+  spawnPoint: {fileID: 0}
 --- !u!95 &2674378573009899324
 Animator:
   serializedVersion: 4
@@ -161,7 +163,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000000
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -183,3 +185,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 2
+--- !u!114 &3564707362392480234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945573258649786023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035410e78b4d75140b63213d9dc1c4f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reach: 3
+  damage: 30
+  stunDuration: 0.5
+  attackAnimationWait: 0.2
+  attackDelay: 5

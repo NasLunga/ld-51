@@ -2,9 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerInput))]
-[RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
     public Vector2 facedDirection {get; private set;}
@@ -78,7 +75,6 @@ public class PlayerMovement : MonoBehaviour
     void Move()
     {
         Vector2 movement = playerInput.movementInput;
-        // movement.Normalize();
         movement *= movementSpeed;
 
         // Only move on one axis at a time
@@ -90,9 +86,9 @@ public class PlayerMovement : MonoBehaviour
 
         // Adjust animator
         if (movement.magnitude > 0) {
-            animator.SetBool("Move", true);
+            animator.speed = 1;
         } else {
-            animator.SetBool("Move", false);
+            animator.speed = 0;
         }
     }
 

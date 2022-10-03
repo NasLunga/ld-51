@@ -10,6 +10,8 @@ public class EnemyMovement : MonoBehaviour
     private Rigidbody2D rb2d;
     private Vector2 currentVelocity;
     private Animator animator;
+    private Coroutine followObjectTask;
+    private Coroutine moveToPointTask;
 
     // Start is called before the first frame update
     void Start()
@@ -34,8 +36,14 @@ public class EnemyMovement : MonoBehaviour
     public void StopMovement()
     {
         currentVelocity = new Vector2(0f, 0f);
-        StopCoroutine("MoveToPoint");
-        StopCoroutine("FollowObject");
+        if (followObjectTask != null) {
+            StopCoroutine(followObjectTask);
+            followObjectTask = null;
+        }
+        if (moveToPointTask != null) {
+            StopCoroutine(moveToPointTask);
+            moveToPointTask = null;
+        }
     }
 
     void AdjustFace()
@@ -45,6 +53,10 @@ public class EnemyMovement : MonoBehaviour
         }
         
         Vector2 direction = currentVelocity;
+        FaceToDirection(direction);
+    }
+
+    public void FaceToDirection(Vector2 direction) {
         int face;
         int rotation = 0;
 
@@ -65,7 +77,13 @@ public class EnemyMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, rotation, 0);
     }
 
-    public IEnumerator FollowObject(GameObject target) {
+    public void FollowObject(GameObject target)
+    {
+        followObjectTask = StartCoroutine(FollowObjectTask(target));
+    }
+
+    private IEnumerator FollowObjectTask(GameObject target)
+    {
         while (true) {
             Vector2 currentPos = gameObject.transform.position;
             Vector2 targetPos = target.transform.position;
@@ -76,7 +94,12 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    public IEnumerator MoveToPoint(Vector2 target)
+    public void MoveToPoint(Vector2 target)
+    {
+        followObjectTask = StartCoroutine(MoveToPointTask(target));
+    }
+
+    public IEnumerator MoveToPointTask(Vector2 target)
     {
         Vector2 currentPos = gameObject.transform.position;
         Vector2 direction = target - currentPos;
