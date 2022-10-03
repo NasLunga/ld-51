@@ -22,6 +22,7 @@ public class EnemyController : MonoBehaviour
     private AudioSource audioSource;
     private EnemyMovement enemyMovement;
     private EnemyAttack enemyAttack;
+    public HPBarController hpBar;
     private SpriteRenderer spriteRenderer;
 
     void Awake() {
@@ -30,6 +31,7 @@ public class EnemyController : MonoBehaviour
         enemyAttack = gameObject.GetComponent<EnemyAttack>();
         audioSource = gameObject.GetComponent<AudioSource>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        hpBar.setPercents(1f);
     }
 
     void InitiateSpawn() {
@@ -67,6 +69,7 @@ public class EnemyController : MonoBehaviour
     void DecreaseHp(int loss)
     {
         hp -= loss;
+        hpBar.setPercents((float) hp / (float) maxHp);
         if (hp < 0) {
             Die();
         }

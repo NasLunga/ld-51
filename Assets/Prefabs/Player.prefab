@@ -104,10 +104,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b568ed7de9aa4624e9ef427e484b9da3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageBlinkDuration: 0.1
+  damageAnimationDuration: 1
   maxHp: 100
   takeDamageSound: {fileID: 8300000, guid: 326487ea679d5cf4b8bd47542c6d2ad1, type: 3}
   deathSound: {fileID: 8300000, guid: da119e0017ee7ae44b5afda4bd9b2458, type: 3}
   audioSource: {fileID: 0}
+  hpBar: {fileID: 0}
 --- !u!114 &3748244088571984076
 MonoBehaviour:
   m_ObjectHideFlags: 0
