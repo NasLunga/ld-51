@@ -19,7 +19,7 @@ public class Frame
     }
 }
 
-public class StorytellingInro : MonoBehaviour
+public class StorytellingIntro : MonoBehaviour
 {
     public UnityEngine.UI.Image backgroundHolder;
     public TextMeshProUGUI charNameHolder;
@@ -43,77 +43,77 @@ public class StorytellingInro : MonoBehaviour
             sprites[0],
             "",
             "Finally found him...",
-            new Color(255, 255, 255)
+            new Color(1, 1, 1)
         ));
 
         frames.Add(new Frame(
             sprites[1],
             "Knight",
             "Did you really think you could hide from me in this forest? Our kind knows this place like the backs of our hands.",
-            new Color(255, 255, 255)
+            new Color(1, 1, 1)
         ));
 
         frames.Add(new Frame(
             sprites[1],
             "Criminal",
             "Please spare me! I didn't commit those crimes, the accusations are false! This is all a mistake!",
-            new Color(255, 255, 255)
+            new Color(1, 1, 1)
         ));
 
         frames.Add(new Frame(
             sprites[1],
             "Knight",
             "Judgement of the royal court is absolute, there's no going against it. Justice always reaches you in the end",
-            new Color(255, 255, 255)
+            new Color(1, 1, 1)
         ));
 
         frames.Add(new Frame(
             sprites[2],
             "",
             "",
-            new Color(255, 255, 255)
+            new Color(1, 1, 1)
         ));
 
         frames.Add(new Frame(
             sprites[2],
             "Voice",
             "Noooooooo!",
-            new Color(255, 255, 255)
+            new Color(1, 1, 1)
         ));
 
         frames.Add(new Frame(
             sprites[3],
             "Knight",
             "What's that?",
-            new Color(255, 255, 255)
+            new Color(1, 1, 1)
         ));
 
         frames.Add(new Frame(
             sprites[4],
             "Witch",
-            "How?... how dare you kill my precious boy? What made you think you are free to decide the fate of my own son?",
-            new Color(255, 255, 255)
+            "How?... how dare you kill my precious boy? What made you think you are free to decide the fate of my son?",
+            new Color(1, 1, 1)
         ));
 
         frames.Add(new Frame(
             sprites[4],
             "Knight",
             "He was proven guilty by the royal court and sentenced to death. It was up to me to carry out the punishment.",
-            new Color(255, 255, 255)
+            new Color(1, 1, 1)
         ));
 
         frames.Add(new Frame(
             sprites[4],
             "Witch",
             "Fool! I'll make you realize the mistake you've made.",
-            new Color(255, 255, 255)
+            new Color(1, 1, 1)
         ));
 
         frames.Add(new Frame(
             sprites[5],
             "",
             "",
-            new Color(255, 255, 255)
+            new Color(1, 1, 1)
         ));
     }
 

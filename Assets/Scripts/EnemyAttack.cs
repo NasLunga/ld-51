@@ -9,6 +9,8 @@ public class EnemyAttack : MonoBehaviour
     public float stunDuration = 0.5f;
     public float attackAnimationWait = 0.2f;
     public float attackDelay = 0.1f;
+    public AudioClip attackSound;
+    private AudioSource audioSource;
     private EnemyController enemyController;
     private EnemyMovement enemyMovement;
     private Animator animator;
@@ -19,6 +21,7 @@ public class EnemyAttack : MonoBehaviour
         enemyController = gameObject.GetComponent<EnemyController>();
         enemyMovement = gameObject.GetComponent<EnemyMovement>();
         animator = gameObject.GetComponent<Animator>();
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     public IEnumerator Attack()
@@ -35,16 +38,18 @@ public class EnemyAttack : MonoBehaviour
 
     void StartAnimation()
     {
+        animator.SetTrigger("Attack");
         attackDirection = GameManager.instance.player.transform.position - gameObject.transform.position;
         attackDirection = Utilities.VectorToSingularDirection(attackDirection);
 
         enemyMovement.FaceToDirection(attackDirection);
-
-        animator.SetTrigger("Attack");
     }
 
     void FinishAttack()
     {
+        audioSource.clip = attackSound;
+        audioSource.Play();
+
         Vector2 playerDirection = GameManager.instance.player.transform.position - gameObject.transform.position;
         float playerDistance = playerDirection.magnitude;
         playerDirection = Utilities.VectorToSingularDirection(playerDirection);

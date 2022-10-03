@@ -7,9 +7,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 996712504846912464, guid: 37c5ed784b9761d409950a3bed552063, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 996712504846912464, guid: 37c5ed784b9761d409950a3bed552063, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1dac2fe741cc26045a3985bd91d9eb26, type: 3}
+    - target: {fileID: 6033821612980334275, guid: 37c5ed784b9761d409950a3bed552063, type: 3}
+      propertyPath: damage
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6033821612980334275, guid: 37c5ed784b9761d409950a3bed552063, type: 3}
+      propertyPath: animationDuration
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 6637786068349493007, guid: 37c5ed784b9761d409950a3bed552063, type: 3}
       propertyPath: m_Name
-      value: Bow
+      value: Bow Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6695142734710718613, guid: 37c5ed784b9761d409950a3bed552063, type: 3}
       propertyPath: m_RootOrder

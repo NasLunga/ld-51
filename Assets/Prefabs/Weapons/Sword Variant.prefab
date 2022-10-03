@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 362800167253082937, guid: d58b49fe8ce1e3b489a735b2c30a07f8, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a3c8f5304a787884fa1da2fa465c6f6e, type: 3}
     - target: {fileID: 4599490504211692419, guid: d58b49fe8ce1e3b489a735b2c30a07f8, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -51,9 +55,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5003455615075270290, guid: d58b49fe8ce1e3b489a735b2c30a07f8, type: 3}
+      propertyPath: animationDuration
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7808555192532005709, guid: d58b49fe8ce1e3b489a735b2c30a07f8, type: 3}
       propertyPath: m_Name
-      value: Sword
+      value: Sword Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d58b49fe8ce1e3b489a735b2c30a07f8, type: 3}

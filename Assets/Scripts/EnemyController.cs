@@ -4,20 +4,32 @@ using UnityEngine;
 
 [RequireComponent(typeof(EnemyMovement))]
 [RequireComponent(typeof(EnemyAttack))]
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(AudioSource))]
 public class EnemyController : MonoBehaviour
 {
+    public float damageBlinkDuration = 0.1f;
+    public float damageAnimationDuration = 0.5f;
     public int maxHp = 1000;
     public int hp {get; private set;}
     public float spawnVelocity = 3f;
     public GameObject spawnPoint;
+    public AudioClip spawnSound;
+    public AudioClip takeDamangeSound;
+    public AudioClip deathSound;
     public EnemyState state {get; private set;}
+    private AudioSource audioSource;
     private EnemyMovement enemyMovement;
     private EnemyAttack enemyAttack;
+    private SpriteRenderer spriteRenderer;
 
     void Awake() {
         hp = maxHp;
         enemyMovement = gameObject.GetComponent<EnemyMovement>();
         enemyAttack = gameObject.GetComponent<EnemyAttack>();
+        audioSource = gameObject.GetComponent<AudioSource>();
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     void InitiateSpawn() {
@@ -31,6 +43,8 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator Spawn()
     {
+        SoundManagerGameplay.instance.PlaySingle(spawnSound);
+
         gameObject.GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
         enemyMovement.StartMovement(new Vector2(0f, spawnVelocity));
         
@@ -56,6 +70,25 @@ public class EnemyController : MonoBehaviour
         if (hp < 0) {
             Die();
         }
+
+        SoundManagerGameplay.instance.PlaySingle(takeDamangeSound);
+        StartCoroutine(RedBlinkAnimation());
+    }
+
+    public IEnumerator RedBlinkAnimation() {
+        float totalTimeElapsed = 0;
+        bool red = true;
+        while (totalTimeElapsed <= damageAnimationDuration) {
+            if (red) {
+                spriteRenderer.color = new Color(1, 0, 0);
+            } else {
+                spriteRenderer.color = new Color(1, 1, 1);
+            }
+            yield return new WaitForSeconds(damageBlinkDuration);
+            totalTimeElapsed += damageBlinkDuration;
+            red = !red;
+        }
+        spriteRenderer.color = new Color(1, 1, 1);
     }
 
     void DecideAction()
@@ -118,6 +151,8 @@ public class EnemyController : MonoBehaviour
     void Die()
     {
         gameObject.SetActive(false);
+        audioSource.clip = deathSound;
+        audioSource.Play();
     }
 }
 
