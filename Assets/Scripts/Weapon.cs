@@ -20,6 +20,16 @@ public abstract class Weapon : MonoBehaviour
         audioSource = gameObject.GetComponent<AudioSource>();
     }
 
+    void Update() {
+        UpdateAnimatorDirection();
+    }
+
+    public void UpdateAnimatorDirection()
+    {
+        int face = GameManager.instance.player.GetComponent<Animator>().GetInteger("Face");
+        animator.SetInteger("Face", face);
+    }
+
     protected void BeforeAttack()
     {
         animator.SetTrigger("Attack");

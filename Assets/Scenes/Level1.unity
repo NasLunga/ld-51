@@ -1542,7 +1542,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 3748244088571984065, guid: 41836fd4f79553549b6ec04b81a51ce6, type: 3}
   particlePrefab: {fileID: 6112444519361766319, guid: bcaadc48fecf4684395494fa2d65bfbf, type: 3}
   gameOverDelay: 1.5
-  nextLevelLoadDelay: 1
+  nextLevelLoadDelay: 2
   enemy: {fileID: 1114800783}
   state: 1
   weaponState: 1

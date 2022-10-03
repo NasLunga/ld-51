@@ -11,17 +11,29 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: a3c8f5304a787884fa1da2fa465c6f6e, type: 3}
+    - target: {fileID: 1436893941982051013, guid: d58b49fe8ce1e3b489a735b2c30a07f8, type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1436893941982051013, guid: d58b49fe8ce1e3b489a735b2c30a07f8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1215990490, guid: 4edf82fa49bcc084c93edc98a47651f8, type: 3}
+    - target: {fileID: 1436893941982051013, guid: d58b49fe8ce1e3b489a735b2c30a07f8, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4599490504211692419, guid: d58b49fe8ce1e3b489a735b2c30a07f8, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4599490504211692419, guid: d58b49fe8ce1e3b489a735b2c30a07f8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.729
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4599490504211692419, guid: d58b49fe8ce1e3b489a735b2c30a07f8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.192
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4599490504211692419, guid: d58b49fe8ce1e3b489a735b2c30a07f8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -59,6 +71,10 @@ PrefabInstance:
       propertyPath: animationDuration
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 5503409153804604460, guid: d58b49fe8ce1e3b489a735b2c30a07f8, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3eebed6476422e245937e4aad75333ca, type: 2}
     - target: {fileID: 7808555192532005709, guid: d58b49fe8ce1e3b489a735b2c30a07f8, type: 3}
       propertyPath: m_Name
       value: Sword Variant

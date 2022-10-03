@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6695142734710718613}
   - component: {fileID: 7742069561643555641}
-  - component: {fileID: 6033821612980334275}
   - component: {fileID: 1354313445033178813}
   - component: {fileID: 996712504846912464}
+  - component: {fileID: 6033821612980334275}
   m_Layer: 0
   m_Name: RangedWeapon
   m_TagString: Untagged
@@ -87,25 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6033821612980334275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6637786068349493007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a1b7f45493198640a15c5a72e7de083, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
-  reload: 0.5
-  animationDuration: 0.2
-  animator: {fileID: 0}
-  audioSource: {fileID: 996712504846912464}
-  particlePrefab: {fileID: 6112444519361766319, guid: bcaadc48fecf4684395494fa2d65bfbf, type: 3}
-  particleVelocity: 5
 --- !u!95 &1354313445033178813
 Animator:
   serializedVersion: 4
@@ -222,3 +203,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6033821612980334275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6637786068349493007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a1b7f45493198640a15c5a72e7de083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  reload: 0.5
+  animationDuration: 0.2
+  animator: {fileID: 0}
+  audioSource: {fileID: 996712504846912464}
+  particlePrefab: {fileID: 6112444519361766319, guid: bcaadc48fecf4684395494fa2d65bfbf, type: 3}
+  particleVelocity: 5

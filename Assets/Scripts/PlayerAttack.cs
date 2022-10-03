@@ -43,26 +43,5 @@ public class PlayerAttack : MonoBehaviour
         } else if (playerInput.rangeAttackInput && weapon.GetType() == typeof(RangedWeapon)) {
             weapon.Attack();
         }
-    }
-
-    // void AttackMelee() {
-    //     MeleeWeapon sword = (MeleeWeapon) weapon;
-
-    //     Vector2 rayStart = gameObject.transform.position;
-    //     Vector2 rayDirection = playerMovement.facedDirection;
-
-    //     sword.Attack(rayStart, rayDirection);
-    // }
-
-    // void AttackRange() {
-    //     RangeWeapon gun = (RangeWeapon) weapon;
-
-    //     Vector2 particleStart = (Vector2) gameObject.transform.position + playerMovement.facedDirection;
-    //     Vector2 particleDirection = playerInput.rangeAttackInputDirection - particleStart;
-    //     particleDirection.Normalize();
-
-    //     gun.Attack(particleStart, particleDirection);
-    // }
-
-    
+    }   
 }
