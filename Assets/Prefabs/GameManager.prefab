@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  weaponChangeStunDuration: 0.5
+  weaponChangeStunDuration: 1
   weaponChangeBackgroundColorDuration: 1
   gameOverDelay: 1.5
   nextLevelLoadDelay: 2
