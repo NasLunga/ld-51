@@ -34,36 +34,34 @@ public class PlayerMovement : MonoBehaviour
     void AdjustFace()
     {
         Vector2 movement = playerInput.movementInput;
-        int y = 0;
-        int x = 0;
-        if (movement.y > 0) {
-            y = 1;
-        } else if (movement.y < 0) {
-            y = -1;
-        } else if (movement.x > 0) {
-            x = 1;
-        } else if (movement.x < 0) {
-            x = -1;
+        Vector2 newFacedDirection = new Vector2(0f, 0f);
+        int face;
+        int rotation = 0;
+
+        if (Mathf.Abs(movement.x) >= Mathf.Abs(movement.y)) {
+            face = 2;
+            if (movement.x > 0) {
+                newFacedDirection.Set(1f, 0f);
+            } else {
+                newFacedDirection.Set(-1f, 0f);
+                rotation = 180;
+            }
+        } else {
+            if (movement.y > 0) {
+                face = 1;
+                newFacedDirection.Set(0f, 1f);
+            } else {
+                face = 3;
+                newFacedDirection.Set(0f, -1f);
+            }
         }
         
         // Only change face when moving
-        if (x != 0 || y != 0) {
-            facedDirection = new Vector2(x, y);
+        if (newFacedDirection.magnitude != 0) {
+            facedDirection = newFacedDirection;
         }
 
         // Adjust animator
-        int face = 0;
-        int rotation = 0;
-        if (facedDirection.y == 1) {
-            face = 1;
-        } else if (facedDirection.y == -1) {
-            face = 3;
-        } else if (facedDirection.x == 1) {
-            face = 2;
-        } else if (facedDirection.x == -1) {
-            face = 2;
-            rotation = 180;
-        }
         animator.SetInteger("Face", face);
         transform.rotation = Quaternion.Euler(0, rotation, 0);
     }
@@ -71,12 +69,13 @@ public class PlayerMovement : MonoBehaviour
     void Move()
     {
         Vector2 movement = playerInput.movementInput;
+        movement.Normalize();
         movement *= movementSpeed;
 
         // Only move on one axis at a time
-        if (movement.y != 0) {
-            movement.x = 0;
-        }
+        // if (movement.y != 0) {
+        //     movement.x = 0;
+        // }
 
         rb2d.velocity = movement;
 

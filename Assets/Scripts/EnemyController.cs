@@ -111,8 +111,8 @@ public class EnemyController : MonoBehaviour
     {
         Vector3 pos = gameObject.transform.position;
         GameObject player = GameManager.instance.player;
+        PlayerController pc = player.GetComponent<PlayerController>();
         float distanceToPlayer = (player.transform.position - pos).magnitude;
-        float distanceToCenter = pos.magnitude;
         
         if (distanceToPlayer < enemyAttack.reach * 0.9) {
             bool shouldAttack = false;
@@ -127,8 +127,8 @@ public class EnemyController : MonoBehaviour
             }
 
             // If player is low hp, attack
-            PlayerController pc = player.GetComponent<PlayerController>();
-            if (pc.hp > pc.maxHp * 0.5f) {
+            pc = player.GetComponent<PlayerController>();
+            if (pc.hp < pc.maxHp * 0.5f) {
                 shouldAttack = true;
             }
 
@@ -146,10 +146,49 @@ public class EnemyController : MonoBehaviour
     }
 
     void DecideMovement() {
-        if (hp > hp / maxHp) {
+        Debug.Log("Deciding movement");
+        Vector3 pos = gameObject.transform.position;
+        GameObject player = GameManager.instance.player;
+        PlayerController pc = player.GetComponent<PlayerController>();
+        float distanceToCenter = pos.magnitude;
+        float distanceToPlayer = (player.transform.position - pos).magnitude;
+
+        if (hp > maxHp / 2f) {
+            // If hp is high, rush attack
             SetState(EnemyState.MovingToPlayer);
-            enemyMovement.FollowObject(GameManager.instance.player);
-            return;
+            enemyMovement.FollowObject(player);
+            Debug.Log("Moving to player (high hp)");
+        } else if (GameManager.instance.weaponState == WeaponState.RangedWeapon) {
+            // If player has ranged weapon, close distance
+            SetState(EnemyState.MovingToPlayer);
+            enemyMovement.FollowObject(player);
+            Debug.Log("Moving to player (ranged weapon)");
+        } else if (pc.hp < pc.maxHp * 0.5f) {
+            // If player has hp is low, rush attack
+            SetState(EnemyState.MovingToPlayer);
+            enemyMovement.FollowObject(player);
+            Debug.Log("Moving to player (player low hp)");
+        } else if (distanceToPlayer < GameManager.instance.meleeWeapon.reach * 3f) {
+            // If enemy is outside of player's reach, circle around player
+            Vector2 directionToPlayer = player.transform.position - pos;
+            directionToPlayer.Normalize();
+            
+            bool negateX = Random.value > 0.5f;
+            Vector2 perpendicular;
+            if (negateX) {
+                perpendicular = new Vector2(directionToPlayer.y, -directionToPlayer.x);
+            } else {
+                perpendicular = new Vector2(-directionToPlayer.y, directionToPlayer.x);
+            }
+
+            SetState(EnemyState.MovingToPoint);
+            enemyMovement.MoveToPoint(perpendicular * 3f);
+            Debug.Log("Moving perpendicularly");
+        } else {
+            // Default option
+            SetState(EnemyState.MovingToPlayer);
+            enemyMovement.FollowObject(player);
+            Debug.Log("Moving to player (default)");
         }
     }
 

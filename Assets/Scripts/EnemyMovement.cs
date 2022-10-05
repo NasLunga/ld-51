@@ -11,8 +11,10 @@ public class EnemyMovement : MonoBehaviour
     private Animator animator;
     private Coroutine followObjectTask;
     private Coroutine moveToPointTask;
+    private EnemyController enemyController;
 
     void Awake() {
+        enemyController = gameObject.GetComponent<EnemyController>();
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
         currentVelocity = new Vector2(0f, 0f);
@@ -40,6 +42,11 @@ public class EnemyMovement : MonoBehaviour
         if (moveToPointTask != null) {
             StopCoroutine(moveToPointTask);
             moveToPointTask = null;
+        }
+
+        if (enemyController.state == EnemyState.MovingToPlayer || enemyController.state == EnemyState.MovingToPoint) {
+            Debug.Log("Standby");
+            enemyController.SetState(EnemyState.Standby);
         }
     }
 
@@ -81,7 +88,9 @@ public class EnemyMovement : MonoBehaviour
 
     private IEnumerator FollowObjectTask(GameObject target)
     {
-        while (true) {
+        // Execute task for a set amount of ticks
+        int ticks = 1000;
+        for (int i = 0; i < ticks; i++) {
             Vector2 currentPos = gameObject.transform.position;
             Vector2 targetPos = target.transform.position;
             Vector2 direction = targetPos - currentPos;
@@ -89,6 +98,7 @@ public class EnemyMovement : MonoBehaviour
             StartMovement(direction);
             yield return null;
         }
+        StopMovement();
     }
 
     public void MoveToPoint(Vector2 target)
@@ -100,7 +110,7 @@ public class EnemyMovement : MonoBehaviour
     {
         Vector2 currentPos = gameObject.transform.position;
         Vector2 direction = target - currentPos;
-        float acceptableOffset = gameObject.GetComponent<Renderer>().bounds.size.y / 2;
+        float acceptableOffset = gameObject.GetComponent<Renderer>().bounds.size.y * 0.25f;
         direction.Normalize();
         StartMovement(direction);
         

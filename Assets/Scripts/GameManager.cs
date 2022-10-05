@@ -91,12 +91,12 @@ public class GameManager : MonoBehaviour
         colorChangeRate *= 0.01f;  // Period of 1 change
 
         for (float r = 0f; r <= 0.5f; r += colorChangeRate) {
-            camera.backgroundColor = new Color(r, 0, 0);
+            camera.backgroundColor = new Color(r, 0, r);
             yield return new WaitForSeconds(0.01f);
         }
 
         for (float r = 0.5f; r >= 0f; r -= colorChangeRate) {
-            camera.backgroundColor = new Color(r, 0, 0);
+            camera.backgroundColor = new Color(r, r / 4f, r);
             yield return new WaitForSeconds(0.01f);
         }
     }
