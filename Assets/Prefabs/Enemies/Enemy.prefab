@@ -170,7 +170,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -269,7 +269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageBlinkDuration: 0.1
   damageAnimationDuration: 0.5
-  maxHp: 250
+  maxHp: 1000
   spawnVelocity: 1
   spawnPoint: {fileID: 0}
   spawnSound: {fileID: 8300000, guid: e9f5b8cceea4dd149996bf2b3d9fc83a, type: 3}
@@ -304,8 +304,8 @@ MonoBehaviour:
   reach: 3
   damage: 30
   stunDuration: 0.5
-  attackAnimationWait: 0.3
-  attackDelay: 2
+  attackAnimationWait: 0.5
+  attackDelay: 1.2
   attackSound: {fileID: 8300000, guid: 0e6ffe07de9dcbb428d2d65d29ed8575, type: 3}
 --- !u!1001 &945573258464543785
 PrefabInstance:

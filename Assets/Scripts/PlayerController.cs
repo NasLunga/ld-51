@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
     void Die()
     {
         StartCoroutine(GameManager.instance.GameOver());
+        playerMovement.Stun(10f);
         audioSource.clip = deathSound;
         audioSource.Play();
     }

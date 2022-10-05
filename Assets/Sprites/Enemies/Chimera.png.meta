@@ -411,7 +411,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChimeraFireBottom1
+      name: ChimeraFireDown1
       rect:
         serializedVersion: 2
         x: 0
@@ -432,7 +432,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChimeraFireBottom2
+      name: ChimeraFireDown2
       rect:
         serializedVersion: 2
         x: 400
@@ -464,7 +464,6 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       ChimeraUp3: -1949731253
-      ChimeraFireBottom2: -460591432
       ChimeraDown2: -1657288547
       ChimeraSide1: -224353905
       ChimeraDown3: -370567776
@@ -473,12 +472,13 @@ TextureImporter:
       ChimeraSide4: -1736063769
       ChimeraFireSide1: -1841501735
       ChimeraDown1: -856747048
+      ChimeraFireDown1: 178807513
       ChimeraUp2: 116898235
       ChimeraFireSide2: 1631547012
-      ChimeraFireBottom1: 178807513
       ChimeraFireUp1: -1866998578
       ChimeraUp1: 1843975264
       ChimeraSide3: 40273976
+      ChimeraFireDown2: -460591432
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

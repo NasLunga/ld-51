@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance {get; private set;}
     public GameObject player;
+    public float weaponChangeStunDuration = 0.5f;
+    public float weaponChangeBackgroundColorDuration = 1f;
     public float gameOverDelay = 1.5f;
     public float nextLevelLoadDelay = 2f;
     public GameObject enemy;
@@ -20,6 +22,7 @@ public class GameManager : MonoBehaviour
     public string nextSceneName;
     public bool doorsOpen {get; private set;} = false;
     public static event System.Action<GameState> OnGameStateChanged;
+    public static event System.Action<WeaponState> OnWeaponStateChanged;
     public AudioClip distortion1;
     public AudioClip distortion2;
 
@@ -48,6 +51,7 @@ public class GameManager : MonoBehaviour
     public void SetWeaponState(WeaponState newState)
     {
         weaponState = newState;
+        OnWeaponStateChanged?.Invoke(newState);
     }
 
     IEnumerator ChangeWeapons()
@@ -62,7 +66,7 @@ public class GameManager : MonoBehaviour
             }
             StartCoroutine(DistortSound());
             StartCoroutine(DistortCamera());
-            player.SendMessage("Stun", 0.5f);
+            player.SendMessage("Stun", weaponChangeStunDuration);
 
             yield return new WaitForSeconds(10);
         }
@@ -83,15 +87,17 @@ public class GameManager : MonoBehaviour
 
     IEnumerator DistortCamera() {
         Camera camera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        float colorChangeRate = 0.5f / (weaponChangeBackgroundColorDuration / 2f);
+        colorChangeRate *= 0.01f;  // Period of 1 change
 
-        for (float r = 0f; r <= 0.5f; r += 0.05f) {
+        for (float r = 0f; r <= 0.5f; r += colorChangeRate) {
             camera.backgroundColor = new Color(r, 0, 0);
-            yield return null;
+            yield return new WaitForSeconds(0.01f);
         }
 
-        for (float r = 0.5f; r >= 0f; r -= 0.05f) {
+        for (float r = 0.5f; r >= 0f; r -= colorChangeRate) {
             camera.backgroundColor = new Color(r, 0, 0);
-            yield return null;
+            yield return new WaitForSeconds(0.01f);
         }
     }
 
@@ -112,6 +118,7 @@ public class GameManager : MonoBehaviour
     void OnDestroy()
     {
         OnGameStateChanged = null;
+        OnWeaponStateChanged = null;
     }
 }
 

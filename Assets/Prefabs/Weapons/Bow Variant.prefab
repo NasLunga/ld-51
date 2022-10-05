@@ -16,6 +16,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 22100000, guid: e657e201bbb73564e8dccc280ce57a53, type: 2}
     - target: {fileID: 6033821612980334275, guid: 37c5ed784b9761d409950a3bed552063, type: 3}
+      propertyPath: damage
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6033821612980334275, guid: 37c5ed784b9761d409950a3bed552063, type: 3}
       propertyPath: particlePrefab
       value: 
       objectReference: {fileID: 6069830928438661181, guid: 51fb1b9fabea26c4a8ab101b838a12dd, type: 3}
@@ -73,16 +77,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7742069561643555641, guid: 37c5ed784b9761d409950a3bed552063, type: 3}
       propertyPath: m_Size.x
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7742069561643555641, guid: 37c5ed784b9761d409950a3bed552063, type: 3}
       propertyPath: m_Size.y
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7742069561643555641, guid: 37c5ed784b9761d409950a3bed552063, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -3829971, guid: 4edf82fa49bcc084c93edc98a47651f8, type: 3}
+      objectReference: {fileID: -679363239, guid: ffcd3e980a7b5bd4cbec183f1bf0b094, type: 3}
     - target: {fileID: 7742069561643555641, guid: 37c5ed784b9761d409950a3bed552063, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
