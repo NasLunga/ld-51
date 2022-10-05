@@ -269,7 +269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageBlinkDuration: 0.1
   damageAnimationDuration: 0.5
-  maxHp: 1000
+  maxHp: 1300
   spawnVelocity: 1
   spawnPoint: {fileID: 0}
   spawnSound: {fileID: 8300000, guid: e9f5b8cceea4dd149996bf2b3d9fc83a, type: 3}
